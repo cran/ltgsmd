@@ -1,0 +1,193 @@
+---
+title: "Getting started with the LTG-SMD framework"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with the LTG-SMD framework}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6,
+  fig.height = 4
+)
+library(ltgsmd)
+set.seed(20240501)
+```
+
+# Overview
+
+This vignette walks through the three workflows of the companion paper:
+
+1. **Single-study analysis with an internal holdout reference** (Section 8 Example 1, mathematics-learning intervention).
+2. **Single-study analysis with an external reference distribution** (Section 8 Example 2, Open Psychometrics IPIP Big Five).
+3. **Multi-site analysis with cross-site pooled reference** (Section 8 Example 3, Many Labs 2 Anderson.1 effect).
+
+The companion paper is "The Denominator Chooses the Estimand: A Target-Population True-Score Framework for Standardized Mean Differences" (Nakamura, in press, *Psychological Methods*).
+
+# 1. Single-study analysis with a holdout reference
+
+The simplest workflow uses an internal holdout split (Strategy A of Section 8.2 in the paper). The study sample provides the mean difference; the holdout sample provides reliability and variance estimates for the target reference.
+
+```{r single-study-example, eval = FALSE}
+# Simulated example
+n <- 60; k <- 4
+study_df <- data.frame(condition = rep(c("control", "treatment"), each = n))
+for (i in 1:k) {
+  eff <- ifelse(study_df$condition == "treatment", 0.5, 0)
+  study_df[[paste0("item", i)]] <- rnorm(2 * n, mean = eff)
+}
+study_df$outcome <- rowMeans(study_df[, paste0("item", 1:k)])
+
+# Holdout reference
+ref_df <- data.frame(condition = rep(c("control", "treatment"), each = n))
+for (i in 1:k) {
+  eff <- ifelse(ref_df$condition == "treatment", 0.5, 0)
+  ref_df[[paste0("item", i)]] <- rnorm(2 * n, mean = eff)
+}
+ref_df$outcome <- rowMeans(ref_df[, paste0("item", 1:k)])
+
+result <- compute_ltg_smd(
+  study_data     = study_df,
+  reference_data = ref_df,
+  group_var      = "condition",
+  score_var      = "outcome",
+  items          = paste0("item", 1:k),
+  group_levels   = c(reference = "control", focal = "treatment")
+)
+
+print(result)
+```
+
+## Confidence intervals
+
+```{r single-study-ci, eval = FALSE}
+ci <- ltg_smd_ci(
+  result,
+  method         = c("analytic", "bootstrap"),
+  boot_type      = "bc",
+  B              = 2000,
+  seed           = 20240501,
+  study_data     = study_df,
+  reference_data = ref_df,
+  group_var      = "condition",
+  score_var      = "outcome",
+  items          = paste0("item", 1:k),
+  group_levels   = c(reference = "control", focal = "treatment")
+)
+print(ci)
+```
+
+The analytic delta-method interval conditions on the reliability point estimate (Section 4 of the paper, $\widehat{\mathrm{SE}}_{\rho\text{-fixed}}$). The bias-corrected nonparametric bootstrap propagates uncertainty in the reliability estimate as well as in the variances. Section 8.3 of the paper recommends reporting at least one justified interval, with the alternative available in supplementary materials.
+
+## Denominator diagnostics (Table F.1 format)
+
+```{r single-study-diag, eval = FALSE}
+diag <- denominator_diagnostics(result)
+print(diag)
+```
+
+The diagnostic table reports group-level sample sizes, observed standard deviations, reference reliabilities, true-score standard deviations, study-to-reference ratios $c_g$, and the two decomposition factors: the reliability factor $(\rho_1 \rho_0)^{1/4}$ and the study-to-target factor $(c_1 c_0)^{-1/2}$. Their product is the predicted ratio of the within-study observed geometric SMD to the LTG-SMD (exact under the decomposition of Section 5).
+
+## Denominator sensitivity (six symmetric denominators)
+
+```{r single-study-sens, eval = FALSE}
+sens <- denominator_sensitivity(result)
+print(sens)
+```
+
+When group-specific reference true-score variances are similar, all six denominators yield nearly identical estimates. When variances differ markedly, the estimates differ, reflecting that different denominators define different estimands (Section 4 of the paper).
+
+# 2. Single-study analysis with an external reference
+
+When a separately defined external reference is available (Strategy B), pass the external sample as `reference_data`. The mean difference still comes from the study sample, but reliability and variance now come from the external population.
+
+```{r external-ref-example, eval = FALSE}
+# Suppose 'study_df' is a focused US 18-30 subsample and 'norm_df' is
+# the rest of an Open Psychometrics dataset serving as the broader
+# reference distribution.
+
+result_external <- compute_ltg_smd(
+  study_data     = study_df,
+  reference_data = norm_df,
+  group_var      = "gender",
+  score_var      = "neuroticism_score",
+  items          = c("N1", "N2", "N3", "N4"),
+  group_levels   = c(reference = "Male", focal = "Female")
+)
+print(result_external)
+```
+
+# 3. Multi-site analysis with cross-site pooled reference
+
+For coordinated multi-site projects (Strategy C), use `multisite_ltg_smd()`, which automates per-site computation and meta-analytic pooling via `metafor::rma()`.
+
+```{r multisite-example, eval = FALSE}
+ml2_result <- multisite_ltg_smd(
+  data               = ml2_data,
+  site_var           = "Source.Global",
+  group_var          = "condition",
+  score_var          = "SWB",
+  items              = paste0("and_item_", 1:25),
+  reference_strategy = "pooled_across_sites",
+  min_n_per_group    = 50
+)
+print(ml2_result)
+```
+
+The output includes:
+
+- `site_table`: site-level Hedges's $g$ and LTG-SMD with within-site SEs.
+- `reference_summary`: pooled reference reliabilities, variances, and true-score geometric SD.
+- `meta_hedges` and `meta_ltg`: full `metafor::rma()` outputs.
+- `meta_comparison`: side-by-side meta-analytic summary.
+
+As Section 9 of the paper discusses, when within-site denominators vary symmetrically around the target-population denominator, pooled estimates and heterogeneity statistics can be similar between Hedges's $g$ and LTG-SMD even though *site-level* effect-size values diverge by $\pm 20\%$ or more.
+
+# 4. Sensitivity to the target reference
+
+```{r ref-sensitivity, eval = FALSE}
+# Compare three plausible references for an analysis
+sens_ref <- sensitivity_reference(
+  object                  = result,
+  alternative_references  = list(
+    norm_alt1 = ref_df_alt1,
+    norm_alt2 = ref_df_alt2
+  ),
+  study_data   = study_df,
+  group_var    = "condition",
+  score_var    = "outcome",
+  items        = paste0("item", 1:k),
+  group_levels = c(reference = "control", focal = "treatment")
+)
+print(sens_ref)
+```
+
+# 5. Exporting a supplementary appendix
+
+```{r supplementary, eval = FALSE}
+export_supplementary(result, ci = ci, file = "supplementary_appendix.md")
+```
+
+This writes a Markdown file with the diagnostic table, denominator sensitivity profile, and confidence intervals, ready for inclusion in supplementary materials.
+
+# Decision rule: when does the LTG-SMD framework matter?
+
+Section 10.1 of the paper proposes three approximate regimes:
+
+| Regime | Conditions | LTG-SMD vs Hedges's $g$ |
+|---|---|---|
+| 1 | High reliability ($\rho > 0.85$), $c_g$ near 1 | Roughly 10% or less |
+| 2 | Moderate reliability (0.65 – 0.85) or moderate $c_g$ deviation | 10 – 25% |
+| 3 | Low reliability ($\rho < 0.65$) or marked $c_g$ deviation | $> 25\%$ |
+
+The most precise diagnostic is the product of the reliability factor and the study-to-target factor in equation (10), reported in `result$factors`. When this product is within 5% of unity, the two estimators agree closely; when it deviates by more than 25%, they answer materially different questions.
+
+# References
+
+The package is companion software to:
+
+> Nakamura, D. (in press). The Denominator Chooses the Estimand: A Target-Population True-Score Framework for Standardized Mean Differences. *Psychological Methods*.

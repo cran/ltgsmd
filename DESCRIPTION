@@ -1,0 +1,36 @@
+Package: ltgsmd
+Title: Latent True-Score and Target-Population Anchored Geometric SMD
+Version: 0.2.2
+Authors@R: 
+    person("Daiki", "Nakamura", , "nakamura@miyazaki-u.ac.jp", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0625-6918"))
+Description: Implements the latent true-score and target-population
+    anchored geometric standardized mean difference (LTG-SMD) framework
+    for two-group effect-size analysis. Provides plug-in estimation,
+    analytic delta-method confidence intervals using a sample
+    fourth-moment plug-in, bias-corrected and bias-corrected-accelerated
+    nonparametric bootstrap confidence intervals with study x group
+    stratification, denominator-sensitivity profiles, and multi-site
+    meta-analytic wrappers. Includes denominator-diagnostic reporting,
+    a pluggable reliability estimator interface, and an explicit
+    interface for specifying the target reference distribution.
+    Companion software to the methodological paper "The Denominator
+    Chooses the Estimand: A Target-Population True-Score Framework for
+    Standardized Mean Differences" (Nakamura, in press, Psychological
+    Methods).
+License: MIT + file LICENSE
+URL: https://doi.org/10.17605/OSF.IO/KW9R6
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports: stats
+Suggests: boot, metafor, psych, testthat (>= 3.0.0), knitr, rmarkdown
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.0
+NeedsCompilation: no
+Packaged: 2026-08-22 06:39:42 UTC; root
+Author: Daiki Nakamura [aut, cre] (ORCID:
+    <https://orcid.org/0000-0002-0625-6918>)
+Maintainer: Daiki Nakamura <nakamura@miyazaki-u.ac.jp>
+Repository: CRAN
+Date/Publication: 2026-09-02 11:30:09 UTC
