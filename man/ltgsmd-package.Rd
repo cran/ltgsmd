@@ -25,7 +25,7 @@ BCa nonparametric bootstrap confidence intervals.}
 \item{\code{\link[=denominator_diagnostics]{denominator_diagnostics()}}}{Table F.1 diagnostics for reporting
 (Section 8.3 of the paper).}
 \item{\code{\link[=denominator_sensitivity]{denominator_sensitivity()}}}{Profile across six symmetric
-denominators (Section 7 Simulation D).}
+denominators (Simulation D; Section 5.3 of the paper).}
 \item{\code{\link[=sensitivity_reference]{sensitivity_reference()}}}{Sensitivity to the choice of target
 reference.}
 \item{\code{\link[=multisite_ltg_smd]{multisite_ltg_smd()}}}{Multi-site analysis with cross-site
@@ -37,11 +37,15 @@ sensitivity profiles for a supplementary appendix.}
 
 \section{Companion paper}{
 
-"The Denominator Chooses the Estimand: A Target-Population True-Score
-Framework for Standardized Mean Differences" (Author, submitted to
-Psychological Methods). See the package vignette
+Nakamura, D. (2026). The denominator chooses the estimand: A
+target-population true-score framework for standardized mean
+differences. \emph{Psychological Methods}. Advance online publication.
+\doi{10.1037/met0000875}
+
+Run \code{citation("ltgsmd")} for this reference in text and BibTeX form.
+See the package vignette
 \code{vignette("getting-started", package = "ltgsmd")} for worked examples
-corresponding to Sections 8.1, 8.2, and 8.3 of the paper.
+corresponding to Sections 6.1, 6.2, and 6.3 of the paper.
 }
 
 \seealso{

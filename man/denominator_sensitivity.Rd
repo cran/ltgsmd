@@ -18,10 +18,11 @@ A data frame with one row per denominator rule, columns
 Computes the LTG-SMD estimate under each of six symmetric denominator
 rules applied to the group-specific reference-sample true-score
 standard deviations: geometric (default), arithmetic, harmonic, root
-mean square, minimum, and maximum. This profile reproduces the six
-rows of Simulation D in Section 7 of the companion paper, and is
-recommended as a supplementary report when group-specific reference
-true-score variances differ markedly (Section 8.3).
+mean square, minimum, and maximum. This profile mirrors the six
+symmetric denominators compared in Simulation D (Section 5.3 of the
+companion paper; Supplementary Section D.4) and is recommended as
+supplementary material (Supplementary Section F.2.4), particularly when
+group-specific reference true-score variances differ markedly.
 }
 \examples{
 set.seed(2026)

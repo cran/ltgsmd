@@ -32,15 +32,16 @@
 #'   provided, these override the internal estimator. Each value must lie
 #'   in (0, 1].
 #' @param se_method Character. "fourth_moment" (default; uses sample
-#'   fourth moments per Section 4 of the paper) or "normal" (uses the
-#'   simpler 2*sigma^4/(m-1) approximation that is valid under normality).
+#'   fourth moments as described in Section 4.2 and Supplementary Section C
+#'   of the paper) or "normal" (uses the simpler 2*sigma^4/(m-1)
+#'   approximation that is valid under normality).
 #' @param verbose Logical. If TRUE, prints intermediate quantities.
 #'
 #' @return An object of class "ltg_smd" containing:
 #' \describe{
 #'   \item{point}{Numeric. The LTG-SMD point estimate.}
 #'   \item{se_analytic}{Numeric. The analytic delta-method standard error
-#'     (reliability-fixed approximation; see Section 6).}
+#'     (reliability-fixed approximation; see Section 4.2).}
 #'   \item{se_method}{Character. Which SE method was used.}
 #'   \item{estimates}{Numeric vector with elements hedges_g, welch_smd,
 #'     observed_geometric, external_observed, ltg_smd.}
@@ -56,7 +57,7 @@
 #' }
 #'
 #' @details
-#' The LTG-SMD estimand (Section 4 of the companion paper) is
+#' The LTG-SMD estimand (Section 2.3 of the companion paper) is
 #' \deqn{\delta_{\mathrm{LTG}} = \frac{\mu_{T1} - \mu_{T0}}
 #'   {(\sigma^2_{T1,R}\sigma^2_{T0,R})^{1/4}}}
 #' where \eqn{\mu_{Tg}} are true-score means and
@@ -76,7 +77,7 @@
 #' finite fourth moments and reduces to the normal-theory approximation
 #' \eqn{2\sigma^4/(m-1)} when the score is normal. Reliability is treated
 #' as fixed at its point estimate (the reliability-fixed approximation of
-#' Section 6); a reliability-propagated alternative is implemented by
+#' Section 4.2); a reliability-propagated alternative is implemented by
 #' the bootstrap in [ltg_smd_ci()].
 #'
 #' @export
@@ -267,7 +268,7 @@ compute_ltg_smd <- function(study_data,
   D <- (A_focal * A_ref)^(1/4)               # geom mean of true-score SDs
   ltg_smd <- delta_mean / D
 
-  # ---- Decomposition factors (Section 5) ----
+  # ---- Decomposition factors (Section 3) ----
 
   c_focal <- sqrt(s2_focal_study) / sqrt(s2_focal_R)
   c_ref   <- sqrt(s2_ref_study)   / sqrt(s2_ref_R)
@@ -276,7 +277,7 @@ compute_ltg_smd <- function(study_data,
   predicted_ratio_obs_to_LTG <- reliability_factor * study_to_target_factor
 
   # ---- Analytic delta-method SE (reliability-fixed) ----
-  # Section 4 of the paper, equation 15. Reliability is treated as fixed
+  # Supplementary Section C.4, equation (C.2). Reliability is treated as fixed
   # at its point estimate.
 
   # Variance of group means
@@ -360,7 +361,7 @@ print.ltg_smd <- function(x, digits = 3, ...) {
       round(x$se_analytic, digits), "\n", sep = "")
   cat("Reference geometric true-score SD (D): ",
       round(x$D, digits), "\n\n")
-  cat("Decomposition factors (Section 5):\n")
+  cat("Decomposition factors (Section 3):\n")
   print(round(x$factors, digits))
   cat("\n")
   cat("Study-to-reference SD ratios c_g:\n")

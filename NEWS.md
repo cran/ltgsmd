@@ -1,3 +1,28 @@
+# ltgsmd 0.2.3
+
+Citation and documentation update following publication of the companion
+paper. Computations, exported functions, and arguments are unchanged, so
+results are identical to version 0.2.2 (the version archived on OSF and
+cited in the paper's data availability statement).
+
+* The companion paper is now published: Nakamura, D. (2026). The
+  denominator chooses the estimand: A target-population true-score
+  framework for standardized mean differences. *Psychological Methods*.
+  Advance online publication. https://doi.org/10.1037/met0000875
+* `DESCRIPTION`: the Description field now cites the paper as
+  Nakamura (2026) <doi:10.1037/met0000875> instead of "in press".
+* Added `inst/CITATION`, so `citation("ltgsmd")` returns the paper and a
+  citation for the package itself.
+* Help pages, the vignette, and `README.md`: references to sections,
+  equations, and supplementary materials now follow the numbering of the
+  published article, and the outdated "submitted" and "in press" wording
+  was removed.
+* The section labels in printed output and in one informational note
+  were updated accordingly (for example, `print()` on a
+  `compute_ltg_smd()` result now shows "Decomposition factors
+  (Section 3)").
+
+
 # ltgsmd 0.2.2
 
 Tiny hotfix for a single test-suite regex.
@@ -56,7 +81,7 @@ and roxygen-doc corrections.
   validation check in v0.2.0 correctly rejected those, so eleven tests
   failed because the test data were not psychometrically realistic.
   All tests now use `make_factor_data()` and the factor-structured
-  items yield alpha in a realistic range (0.8 — 0.95 depending on the
+  items yield alpha in a realistic range (0.8 to 0.95 depending on the
   noise level).
 
 * Fixed regex escaping in `test-validation.R`: the literal-paren

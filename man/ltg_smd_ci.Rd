@@ -66,7 +66,7 @@ z0, acceleration, strata_design, and the bootstrap distribution.}
 }
 \description{
 Computes one or more confidence intervals for the LTG-SMD, including the
-analytic delta-method interval (reliability-fixed, Section 6 of the
+analytic delta-method interval (reliability-fixed; Section 4.2 of the
 paper) and the bias-corrected (BC) or bias-corrected-and-accelerated
 (BCa) nonparametric bootstrap interval.
 }

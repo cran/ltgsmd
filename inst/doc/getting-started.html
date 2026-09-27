@@ -347,18 +347,18 @@ framework</h1>
 paper:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Single-study analysis with an internal holdout
-reference</strong> (Section 8 Example 1, mathematics-learning
+reference</strong> (Example 1 in Section 6.1, mathematics-learning
 intervention).</li>
 <li><strong>Single-study analysis with an external reference
-distribution</strong> (Section 8 Example 2, Open Psychometrics IPIP Big
-Five).</li>
+distribution</strong> (Example 2 in Section 6.2, Open Psychometrics IPIP
+Big Five).</li>
 <li><strong>Multi-site analysis with cross-site pooled
-reference</strong> (Section 8 Example 3, Many Labs 2 Anderson.1
+reference</strong> (Example 3 in Section 6.3, Many Labs 2 Anderson.1
 effect).</li>
 </ol>
 <p>The companion paper is “The Denominator Chooses the Estimand: A
 Target-Population True-Score Framework for Standardized Mean
-Differences” (Nakamura, in press, <em>Psychological Methods</em>).</p>
+Differences” (Nakamura, 2026, <em>Psychological Methods</em>, <a href="https://doi.org/10.1037/met0000875" class="uri">https://doi.org/10.1037/met0000875</a>).</p>
 </div>
 <div id="single-study-analysis-with-a-holdout-reference" class="section level1">
 <h1>1. Single-study analysis with a holdout reference</h1>
@@ -410,11 +410,11 @@ estimates for the target reference.</p>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>)</span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">print</span>(ci)</span></code></pre></div>
 <p>The analytic delta-method interval conditions on the reliability
-point estimate (Section 4 of the paper, <span class="math inline">\(\widehat{\mathrm{SE}}_{\rho\text{-fixed}}\)</span>).
+point estimate (Section 4.2 of the paper, <span class="math inline">\(\widehat{\mathrm{SE}}_{\rho\text{-fixed}}\)</span>).
 The bias-corrected nonparametric bootstrap propagates uncertainty in the
 reliability estimate as well as in the variances. Section 8.3 of the
-paper recommends reporting at least one justified interval, with the
-alternative available in supplementary materials.</p>
+paper recommends reporting at least one justified interval; both can be
+reported, with one designated as primary.</p>
 </div>
 <div id="denominator-diagnostics-table-f.1-format" class="section level2">
 <h2>Denominator diagnostics (Table F.1 format)</h2>
@@ -426,7 +426,7 @@ deviations, study-to-reference ratios <span class="math inline">\(c_g\)</span>, 
 the reliability factor <span class="math inline">\((\rho_1
 \rho_0)^{1/4}\)</span> and the study-to-target factor <span class="math inline">\((c_1 c_0)^{-1/2}\)</span>. Their product is the
 predicted ratio of the within-study observed geometric SMD to the
-LTG-SMD (exact under the decomposition of Section 5).</p>
+LTG-SMD (exact under the central decomposition of Section 3).</p>
 </div>
 <div id="denominator-sensitivity-six-symmetric-denominators" class="section level2">
 <h2>Denominator sensitivity (six symmetric denominators)</h2>
@@ -435,7 +435,7 @@ LTG-SMD (exact under the decomposition of Section 5).</p>
 <p>When group-specific reference true-score variances are similar, all
 six denominators yield nearly identical estimates. When variances differ
 markedly, the estimates differ, reflecting that different denominators
-define different estimands (Section 4 of the paper).</p>
+define different estimands (Sections 2.5 and 5.3 of the paper).</p>
 </div>
 </div>
 <div id="single-study-analysis-with-an-external-reference" class="section level1">
@@ -483,11 +483,12 @@ variances, and true-score geometric SD.</li>
 <li><code>meta_comparison</code>: side-by-side meta-analytic
 summary.</li>
 </ul>
-<p>As Section 9 of the paper discusses, when within-site denominators
-vary symmetrically around the target-population denominator, pooled
-estimates and heterogeneity statistics can be similar between Hedges’s
-<span class="math inline">\(g\)</span> and LTG-SMD even though
-<em>site-level</em> effect-size values diverge by <span class="math inline">\(\pm 20\%\)</span> or more.</p>
+<p>As Sections 6.3 and 7.2 of the paper discuss, when within-site
+denominators vary symmetrically around the target-population
+denominator, pooled estimates and heterogeneity statistics can be
+similar between Hedges’s <span class="math inline">\(g\)</span> and
+LTG-SMD even though <em>site-level</em> effect-size values diverge by
+<span class="math inline">\(\pm 20\%\)</span> or more.</p>
 </div>
 <div id="sensitivity-to-the-target-reference" class="section level1">
 <h1>4. Sensitivity to the target reference</h1>
@@ -515,7 +516,7 @@ supplementary materials.</p>
 </div>
 <div id="decision-rule-when-does-the-ltg-smd-framework-matter" class="section level1">
 <h1>Decision rule: when does the LTG-SMD framework matter?</h1>
-<p>Section 10.1 of the paper proposes three approximate regimes:</p>
+<p>Section 8.1 of the paper proposes three approximate regimes:</p>
 <table>
 <colgroup>
 <col width="33%" />
@@ -533,25 +534,27 @@ supplementary materials.</p>
 <tr class="odd">
 <td>1</td>
 <td>High reliability (<span class="math inline">\(\rho &gt;
-0.85\)</span>), <span class="math inline">\(c_g\)</span> near 1</td>
+0.85\)</span> in both groups), <span class="math inline">\(c_g\)</span>
+within about 10% of 1</td>
 <td>Roughly 10% or less</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>Moderate reliability (0.65 – 0.85) or moderate <span class="math inline">\(c_g\)</span> deviation</td>
+<td>Moderate reliability (0.65 – 0.85) or <span class="math inline">\(c_g\)</span> departing from 1 by about 10 –
+30%</td>
 <td>10 – 25%</td>
 </tr>
 <tr class="odd">
 <td>3</td>
 <td>Low reliability (<span class="math inline">\(\rho &lt;
-0.65\)</span>) or marked <span class="math inline">\(c_g\)</span>
-deviation</td>
+0.65\)</span>) or <span class="math inline">\(c_g\)</span> departing
+from 1 by more than about 30%</td>
 <td><span class="math inline">\(&gt; 25\%\)</span></td>
 </tr>
 </tbody>
 </table>
 <p>The most precise diagnostic is the product of the reliability factor
-and the study-to-target factor in equation (10), reported in
+and the study-to-target factor in equation (5), reported in
 <code>result$factors</code>. When this product is within 5% of unity,
 the two estimators agree closely; when it deviates by more than 25%,
 they answer materially different questions.</p>
@@ -560,10 +563,13 @@ they answer materially different questions.</p>
 <h1>References</h1>
 <p>The package is companion software to:</p>
 <blockquote>
-<p>Nakamura, D. (in press). The Denominator Chooses the Estimand: A
-Target-Population True-Score Framework for Standardized Mean
-Differences. <em>Psychological Methods</em>.</p>
+<p>Nakamura, D. (2026). The denominator chooses the estimand: A
+target-population true-score framework for standardized mean
+differences. <em>Psychological Methods</em>. Advance online publication.
+<a href="https://doi.org/10.1037/met0000875" class="uri">https://doi.org/10.1037/met0000875</a></p>
 </blockquote>
+<p>Run <code>citation(&quot;ltgsmd&quot;)</code> to obtain this reference in text
+and BibTeX form.</p>
 </div>
 
 

@@ -46,7 +46,8 @@ coef_alpha <- function(items, na.rm = TRUE) {
 #' Compute the fourth central moment of a numeric vector
 #'
 #' Helper for the analytic delta-method variance of \eqn{s^2} in the
-#' LTG-SMD asymptotic variance derivation (see Section 4 of the paper).
+#' LTG-SMD asymptotic variance derivation (see Section 4.2 and
+#' Supplementary Section C of the paper).
 #'
 #' @param x A numeric vector.
 #' @param na.rm Logical. If TRUE (default), missing values are removed.
@@ -65,7 +66,8 @@ fourth_moment <- function(x, na.rm = TRUE) {
 #' \deqn{\widehat{\mathrm{Var}}(s^2) = \frac{\hat\mu_4 -
 #'   \frac{m-3}{m-1}(s^2)^2}{m}}
 #' which reduces to \eqn{2 \sigma^4 / (m-1)} under normality. This is the
-#' plug-in used in Section 6 of the companion paper.
+#' plug-in described in Section 4.2 and Supplementary Section C.3 of the
+#' companion paper.
 #'
 #' @param mu4 Sample fourth central moment.
 #' @param s2 Sample variance.

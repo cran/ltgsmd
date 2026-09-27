@@ -1,0 +1,38 @@
+pkg_year <- if (is.null(meta$`Date/Publication`)) "2026" else
+  substr(meta$`Date/Publication`, 1, 4)
+
+bibentry(
+  bibtype = "Article",
+  header  = "To cite the LTG-SMD framework, please cite the companion paper:",
+  title   = paste("The Denominator Chooses the Estimand: A Target-Population",
+                  "True-Score Framework for Standardized Mean Differences"),
+  author  = person("Daiki", "Nakamura"),
+  journal = "Psychological Methods",
+  year    = "2026",
+  note    = "Advance online publication",
+  doi     = "10.1037/met0000875",
+  textVersion = paste(
+    "Nakamura, D. (2026).",
+    "The denominator chooses the estimand: A target-population true-score",
+    "framework for standardized mean differences.",
+    "Psychological Methods. Advance online publication.",
+    "https://doi.org/10.1037/met0000875"
+  )
+)
+
+bibentry(
+  bibtype = "Manual",
+  header  = "To cite the ltgsmd software itself, please use:",
+  title   = paste("{ltgsmd}: Latent True-Score and Target-Population",
+                  "Anchored Geometric {SMD}"),
+  author  = person("Daiki", "Nakamura"),
+  year    = pkg_year,
+  note    = paste("R package version", meta$Version),
+  doi     = "10.32614/CRAN.package.ltgsmd",
+  url     = "https://CRAN.R-project.org/package=ltgsmd",
+  textVersion = paste0(
+    "Nakamura, D. (", pkg_year, "). ltgsmd: Latent true-score and ",
+    "target-population anchored geometric SMD (Version ", meta$Version,
+    ") [R package]. https://doi.org/10.32614/CRAN.package.ltgsmd"
+  )
+)

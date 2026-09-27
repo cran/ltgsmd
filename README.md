@@ -2,7 +2,7 @@
 
 Companion R package to the methodological paper:
 
-> Nakamura, D. (in press). *The Denominator Chooses the Estimand: A Target-Population True-Score Framework for Standardized Mean Differences*. Psychological Methods.
+> Nakamura, D. (2026). The denominator chooses the estimand: A target-population true-score framework for standardized mean differences. *Psychological Methods*. Advance online publication. https://doi.org/10.1037/met0000875
 
 ## Installation
 
@@ -70,7 +70,7 @@ a two-group SMD whose denominator is the geometric mean of group-specific true-s
 | `compute_ltg_smd()` | Plug-in estimator + five SMD comparators (Hedges's g, Welch, observed geometric, external observed, LTG-SMD) |
 | `ltg_smd_ci()` | Analytic delta-method + BC/BCa bootstrap confidence intervals |
 | `denominator_diagnostics()` | Table F.1 diagnostics for reporting (Section 8.3) |
-| `denominator_sensitivity()` | Profile across six symmetric denominators (Section 7 Simulation D) |
+| `denominator_sensitivity()` | Profile across six symmetric denominators (Simulation D, Section 5.3) |
 | `sensitivity_reference()` | Sensitivity to alternative target reference distributions |
 | `multisite_ltg_smd()` | Multi-site wrapper with cross-site reference and meta-analytic pooling |
 | `export_supplementary()` | Bundle diagnostics, CIs, and sensitivity for a supplementary appendix |
@@ -78,25 +78,25 @@ a two-group SMD whose denominator is the geometric mean of group-specific true-s
 
 ## Vignette
 
-The package vignette `vignette("getting-started", package = "ltgsmd")` works through the three Section 8 examples from the companion paper.
+The package vignette `vignette("getting-started", package = "ltgsmd")` works through the three Section 6 examples from the companion paper.
 
 ## Reproducing the empirical illustrations
 
-The three empirical illustrations in Section 8 of the paper use:
+The three empirical illustrations in Section 6 of the paper use:
 
-1. **Example 1**: Ottmar et al. (2025) open mathematics-learning data, accessed via the OSF.
+1. **Example 1**: Ottmar et al. (2025) open mathematics-learning data (Journal of Open Psychology Data, https://doi.org/10.5334/jopd.139).
 2. **Example 2**: Open Psychometrics IPIP Big Five 2014 dataset.
 3. **Example 3**: Many Labs 2 Anderson.1 effect, Slate 1 data from Klein et al. (2018).
 
-R scripts that reproduce each example are archived in the supplementary repository (see the companion paper's Data and Code Availability statement). The scripts read the public data and call this package's functions in the order documented in the vignette.
+R scripts that reproduce each example are archived on OSF (https://doi.org/10.17605/OSF.IO/KW9R6); see also the data availability statement in the companion paper. The scripts read the public data and call this package's functions in the order documented in the vignette.
 
 ## Citation
 
 Please cite the companion paper:
 
-> Nakamura, D. (in press). The Denominator Chooses the Estimand: A Target-Population True-Score Framework for Standardized Mean Differences. *Psychological Methods*.
+> Nakamura, D. (2026). The denominator chooses the estimand: A target-population true-score framework for standardized mean differences. *Psychological Methods*. Advance online publication. https://doi.org/10.1037/met0000875
 
-A `CITATION` file will be updated with full volume/page details once assigned.
+In R, `citation("ltgsmd")` returns this reference, together with a citation for the package itself, in text and BibTeX form. Volume and page details will be added once the article is assigned to an issue.
 
 ## License
 
@@ -114,4 +114,4 @@ MIT. See the `LICENSE` file.
 
 ## Status
 
-This is version 0.2.2. The companion paper has been accepted for publication in *Psychological Methods*, and the API is stable.
+This is version 0.2.3. The companion paper has been published in *Psychological Methods* (advance online publication, 2026), and the API is stable.

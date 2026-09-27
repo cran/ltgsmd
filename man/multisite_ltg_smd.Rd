@@ -69,7 +69,8 @@ the LTG-SMD treats the reference denominator as fixed.}
 }
 \description{
 Implements the multi-site workflow described in Section 7.3 and
-illustrated in Example 3 of the paper (Many Labs 2 Anderson.1).
+illustrated in Example 3 (Section 6.3) of the paper (Many Labs 2
+Anderson.1).
 Each site is treated as a study sample, the cross-site pooled
 distribution (or an external sample) is treated as the target
 reference, and site-level Hedges's g and LTG-SMD estimates are

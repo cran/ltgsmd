@@ -1,6 +1,6 @@
 Package: ltgsmd
 Title: Latent True-Score and Target-Population Anchored Geometric SMD
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: 
     person("Daiki", "Nakamura", , "nakamura@miyazaki-u.ac.jp", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0625-6918"))
@@ -14,10 +14,9 @@ Description: Implements the latent true-score and target-population
     meta-analytic wrappers. Includes denominator-diagnostic reporting,
     a pluggable reliability estimator interface, and an explicit
     interface for specifying the target reference distribution.
-    Companion software to the methodological paper "The Denominator
-    Chooses the Estimand: A Target-Population True-Score Framework for
-    Standardized Mean Differences" (Nakamura, in press, Psychological
-    Methods).
+    Companion software to Nakamura (2026) "The Denominator Chooses the
+    Estimand: A Target-Population True-Score Framework for Standardized
+    Mean Differences" <doi:10.1037/met0000875>.
 License: MIT + file LICENSE
 URL: https://doi.org/10.17605/OSF.IO/KW9R6
 Encoding: UTF-8
@@ -28,9 +27,9 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.1.0
 NeedsCompilation: no
-Packaged: 2026-08-22 06:39:42 UTC; root
+Packaged: 2026-09-25 00:45:57 UTC; root
 Author: Daiki Nakamura [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-0625-6918>)
 Maintainer: Daiki Nakamura <nakamura@miyazaki-u.ac.jp>
 Repository: CRAN
-Date/Publication: 2026-09-02 11:30:09 UTC
+Date/Publication: 2026-09-27 13:00:02 UTC
